@@ -1,4 +1,6 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import networkx as nx
 
 st.set_page_config(page_title="Modul 0.1: Realita & Model", layout="centered")
 
@@ -36,19 +38,31 @@ st.write("Coba geser slider di bawah untuk melihat bagaimana realitas yang kompl
 level = st.slider("Pilih Tingkat Abstraksi Model:", min_value=1, max_value=3, value=1, step=1)
 
 if level == 1:
-    st.markdown("### 📸 Level 1: Realitas Asli (Foto Satelit)")
-    st.image("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=700", caption="Kompleksitas Dunia Nyata")
-    st.warning("🔍 **Karakteristik:** Sangat detail, kaya informasi, tetapi membingungkan dan rumit jika digunakan untuk analisis cepat.")
+    st.markdown("### 📸 Level 1: Realitas Asli (Foto Satelit / Kompleks)")
+    # Menggunakan URL Unsplash khusus gambar lanskap kota satelit yang stabil
+    st.image("https://images.unsplash.com/photo-1506751470038-e579ef92021b?w=800", caption="Kompleksitas Dunia Nyata: Penuh detail gedung, vegetasi, dan kontur bumi.")
+    st.warning("🔍 **Karakteristik:** Sangat detail dan kaya informasi, tetapi membingungkan dan rumit jika digunakan untuk analisis cepat.")
 
 elif level == 2:
     st.markdown("### 🗺️ Level 2: Peta Jalan (Model Sederhana)")
-    st.image("https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=700", caption="Abstraksi Jalan Raya")
+    # Gambar peta jalan vektor yang bersih
+    st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800", caption="Abstraksi Jalan Raya: Hanya memuat garis jalan utama.")
     st.success("✅ **Karakteristik:** Menghilangkan detail warna bangunan & posisi pohon. Hanya menyisa garis jalan dan nama tempat penting.")
 
 elif level == 3:
-    st.markdown("### 🚉 Level 3: Peta Jalur Transportasi (Model Sangat Abstrak)")
-    st.image("https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700", caption="Skema Jalur Kereta / MRT")
-    st.info("⚡ **Karakteristik:** Bahkan bentuk geografis jalan pun diabaikan. Hanya mempertahankan relasi/koneksi antar stasiun.")
+    st.markdown("### 🚉 Level 3: Peta Jalur Transportasi / Topologi (Model Sangat Abstrak)")
+    
+    # Membuat Grafik Vektor Skema MRT langsung dengan Python
+    fig, ax = plt.subplots(figsize=(6, 3))
+    G = nx.Graph()
+    G.add_edges_from([("Stasiun A", "Stasiun B"), ("Stasiun B", "Stasiun C"), ("Stasiun C", "Stasiun D"), ("Stasiun B", "Stasiun E")])
+    pos = {"Stasiun A": (0, 0), "Stasiun B": (1, 0), "Stasiun C": (2, 0), "Stasiun D": (3, 0), "Stasiun E": (1, 1)}
+    
+    nx.draw(G, pos, ax=ax, with_labels=True, node_color='skyblue', node_size=2000, font_size=9, font_weight='bold', edge_color='red', width=3)
+    ax.set_title("Diagram Skematis Rute Kereta", fontsize=11)
+    
+    st.pyplot(fig)
+    st.info("⚡ **Karakteristik:** Bentuk geografis jalan dan jarak riil diabaikan total. Hanya mempertahankan **relasi/koneksi** antar titik stasiun.")
 
 st.markdown("---")
 
