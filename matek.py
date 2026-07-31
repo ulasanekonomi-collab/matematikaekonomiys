@@ -40,7 +40,7 @@ level = st.slider("Pilih Tingkat Abstraksi Model:", min_value=1, max_value=3, va
 if level == 1:
     st.markdown("### 📸 Level 1: Realitas Asli (Foto Satelit / Kompleks)")
     # Menggunakan URL Unsplash khusus gambar lanskap kota satelit yang stabil
-    st.image("https://inet.detik.com/science/d-7352338/ribuan-satelit-mengorbit-bumi-kok-tidak-tabrakan", caption="Kompleksitas Dunia Nyata: Penuh detail gedung, vegetasi, dan kontur bumi.")
+    st.image("https://akcdn.detik.net.id/community/media/visual/2019/04/09/2f5fb3fb-263b-4088-99f0-dff149129f66.jpeg?w=700&q=90", caption="Kompleksitas Dunia Nyata: Penuh detail gedung, vegetasi, dan kontur bumi.")
     st.warning("🔍 **Karakteristik:** Sangat detail dan kaya informasi, tetapi membingungkan dan rumit jika digunakan untuk analisis cepat.")
 
 elif level == 2:
