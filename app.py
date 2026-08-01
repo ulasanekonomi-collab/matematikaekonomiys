@@ -42,7 +42,7 @@ with st.sidebar:
     )
     
     st.markdown("---")
-    st.caption("🚀 *Dikembangkan untuk Pembelajaran Interaktif*")
+    st.caption("🚀 *Dikembangkan oleh Yuhka Sundaya*")
 
 # 4. Main Area Router
 if pilihan_modul == "0.1 Realita & Model":
