@@ -47,10 +47,12 @@ with st.sidebar:
 # 4. Main Area Router
 if pilihan_modul == "0.1 Realita & Model":
     modul_0.render()
-elif pilihan == "1.1 Teori Himpunan":
-    modul_1.render()  # <--- Panggil fungsi render modul_1 di sini!
-else:
-    st.info("Modul ini sedang dalam tahap pengembangan.")
+
+elif pilihan_modul == "1.1 Teori Himpunan":
+    modul_1.render()
+
 elif pilihan_modul == "2.1 Fungsi & Pemetaan (Draft)":
-    st.title("🛠️ Modul 2.1: Fungsi & Pemetaan")
     st.info("Modul ini sedang dalam tahap pengembangan.")
+
+else:
+    st.info("Pilih modul pada menu di sebelah kiri.")
