@@ -85,9 +85,11 @@ def render():
     with col_a:
         st.subheader("📚 Dari Peta ke Ekonomi")
         st.markdown("""
-        1. **Realitas Ekonomi:** Jutaan transaksi rumit tiap detik (suasana hati, cuaca, harga, dll).
-        2. **Model Ekonomi:** Menyederhanakan realitas dengan memfokuskan hubungan variabel utama.
-        3. **Asumsi *Ceteris Paribus*:** Anggapan "faktor lain dianggap tetap/diabaikan".
+        Sama halnya dengan peta, **model ekonomi bukanlah gambaran riil yang fotografis**, melainkan bentuk **penyederhanaan yang disengaja** (*deliberate simplification*).
+
+        * **Realitas Ekonomi:** Kompleks dan riuh. Setiap detik ada jutaan keputusan individu, perubahan cuaca, preferensi, hingga suasana hati pembeli.
+        * **Model Ekonomi:** Mengisolasi variabel kunci. Kita memilih untuk hanya menyoroti hubungan mendasar (misal: *Harga* vs *Jumlah Permintaan*).
+        * **Peran *Ceteris Paribus*:** Seperti mematikan 'suara latar' di peta agar garis jalan terlihat jelas. Kita menganggap variabel lain di luar model bernilai tetap (*all else being equal*).
         """)
 
     with col_b:
