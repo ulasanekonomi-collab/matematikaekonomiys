@@ -60,7 +60,7 @@ def render():
     elif level == "Level 2: Peta Jalan":
         with img_col:
             st.image(
-                "https://upload.wikimedia.org/wikipedia/commons/3/35/OpenStreetMap_demonstration.png", 
+                "https://jsp.co.id/wp-content/uploads/2018/07/tempat-belajar-drone-terbaik-2.jpg", 
                 use_container_width=True
             )
         with txt_col:
