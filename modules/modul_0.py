@@ -50,7 +50,7 @@ def render():
     if level == "Level 1: Realitas":
         with img_col:
             st.image(
-                "https://upload.wikimedia.org/wikipedia/commons/6/6c/Aerial_view_of_Berlin_3.jpg", 
+                "https://id.wikipedia.org/wiki/Berkas:The_Earth_seen_from_Apollo_17.jpg", 
                 use_container_width=True
             )
         with txt_col:
