@@ -70,7 +70,7 @@ def render():
     elif level == "Level 3: Skema Topologi":
         with img_col:
             st.image(
-                "https://upload.wikimedia.org/wikipedia/commons/e/ea/London_Underground_Diagram.png", 
+                "https://jogjakini.wordpress.com/wp-content/uploads/2009/03/peta-jogja2_resize_resize.jpg?w=1119&h=1397", 
                 use_container_width=True
             )
         with txt_col:
