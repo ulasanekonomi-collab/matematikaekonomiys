@@ -4,11 +4,36 @@ def render():
     st.title("📌 Modul 1: Teori Himpunan (Set Theory)")
     st.caption("Fondasi Matematika Ekonomi berdasarkan Pendekatan Alpha C. Chiang")
     
+    # BANNER MOTIVASI / URGENSI
     st.info("""
-    💡 **Landasan Konsep:** Himpunan (Set) adalah kumpulan objek-objek terdefinisi dengan jelas. 
-    Dalam ekonomi, himpunan digunakan untuk mengelompokkan agen ekonomi, batas-batas pilihan, hingga himpunan strategi.
+    💡 **Pertanyaan Mendasar:** *Mengapa Ekonom Harus Memahami Teori Himpunan?*
+    
+    Teori himpunan bukan sekadar topik matematika murni, melainkan **bahasa dasar untuk membangun kerangka berpikir ekonomi**. Sebelum ekonom bisa mengukur ($quantitative$), ia harus mampu mendefinisikan dan mengelompokkan ($qualitative/logical$).
     """)
     
+    # EXPANDER: KEGUNAAN PENELITIAN & DECISION MAKING
+    with st.expander("🎯 **Mengapa Teori Himpunan Penting dalam Penelitian & Decision Making? (Klik untuk membuka)**", expanded=True):
+        col_res, col_dec = st.columns(2)
+        
+        with col_res:
+            st.markdown("### 🔬 1. Dalam Penelitian (*Research*)")
+            st.markdown("""
+            * **Mendefinisikan Ruang Analisis (*Domain*):** Menentukan batas nilai variabel yang valid (misal: tingkat bunga $r \ge 0$, konsumsi $C \ge 0$).
+            * **Partisi Data Sosial-Ekonomi:** Membagi data populasi besar menjadi *subset-subset* saling lepas untuk menghitung tingkat kemiskinan, kemiskinan ekstrem, atau ketimpangan.
+            * **Aksioma Teori Ekonomi:** Landasan teori preferensi konsumen dan teori permainan (*Game Theory*) sepenuhnya dibangun dari aksioma himpunan.
+            """)
+            
+        with col_dec:
+            st.markdown("### 🎯 2. Dalam Pengambilan Keputusan (*Decision Making*)")
+            st.markdown("""
+            * **Memetakan Batas Pilihan (*Feasible Set*):** Keputusan optimal adalah memilih elemen terbaik dari himpunan yang sanggup dijangkau ($x \in X$).
+            * **Targeting Kebijakan Publik:** Menentukan kriteria keanggotaan penerima subsidi/bansos. Kesalahan targeting secara matematis adalah kekeliruan menentukan *subset* dan *komplemen*.
+            * **Ruang Strategi & Risiko:** Memetakan seluruh kemungkinan aksi lawan dan variabel luar dalam pemodelan kebijakan/bisnis.
+            """)
+
+    st.markdown("---")
+
+    # TAB UTAMA CHIANG
     tab1, tab2, tab3, tab4 = st.tabs([
         "1. Definisi & Notasi", 
         "2. Hubungan Antar Himpunan", 
