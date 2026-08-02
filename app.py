@@ -51,7 +51,7 @@ if pilihan_modul == "0.1 Realita & Model":
 elif pilihan_modul == "1.1 Teori Himpunan":
     modul_1.render()
 
-elif pilihan_modul == "2.1 Fungsi & Pemetaan (Draft)":
+elif pilihan_modul == "2.1 Fungsi & Pemetaan":
     st.info("Modul ini sedang dalam tahap pengembangan.")
 
 else:
