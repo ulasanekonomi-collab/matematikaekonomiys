@@ -1,5 +1,5 @@
 import streamlit as st
-from modules import modul_0, modul_1  # <--- Pastikan modul_1 di-import di sini
+from modules import modul_0, modul_1, modul_2
 
 # 1. Konfigurasi Halaman (Lebar Layar & Icon)
 st.set_page_config(
