@@ -291,7 +291,7 @@ def render():
                 st.markdown("**1. Himpunan**")
                 st.info("""
                 * $D$: Himpunan Debitur
-                * $R$: Himpunan Tingkat Risiko $\{ \text{Rendah}, \text{Sedang}, \text{Tinggi} \}$
+                * $R$: Himpunan Tingkat Risiko $\{ {Rendah}, {Sedang}, \{Tinggi} \}
                 """)
             
             with c2:
