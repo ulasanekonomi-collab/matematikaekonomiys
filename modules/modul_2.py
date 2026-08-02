@@ -225,7 +225,7 @@ def render():
         **Kesimpulan Reflektif:** 
         Meskipun kita menggambar $P$ di sumbu vertikal, kita harus tetap ingat bahwa dalam teori permintaan pasar, **Harga ($P$) adalah variabel eksogen** yang menentukan keputusan kuantitas pembeli ($Q$).
         """)
-# =====================================================================
+        # =====================================================================
         # SEKUENS PEDAGOGIS: HIMPUNAN -> RELASI -> SIFAT -> MANFAAT EKONOMI
         # =====================================================================
         st.markdown("---")
@@ -291,7 +291,7 @@ def render():
                 st.markdown("**1. Himpunan**")
                 st.info("""
                 * $D$: Himpunan Debitur
-                * $R$: Himpunan Tingkat Risiko $\{ {Rendah}, {Sedang}, \{Tinggi} \}
+                * $R$: Himpunan Tingkat Risiko \{ {Rendah}, {Sedang}, \{Tinggi} \}
                 """)
             
             with c2:
