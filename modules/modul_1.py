@@ -1,135 +1,123 @@
 import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
 
 def render():
-    st.title("📌 Modul 1: Teori Himpunan dalam Ekonomi & Sosial")
-    st.caption("Mendefinisikan Batas Pilihan, Struktur Sosial, dan Kebijakan Publik")
+    st.title("📌 Modul 1: Teori Himpunan (*Set Theory*)")
+    st.caption("Fondasi Matematika Ekonomi berdasarkan Pendekatan Alpha C. Chiang")
     
     st.info("""
-    💡 **Intuisi Utama:** Dalam ilmu sosial dan ekonomi, **Himpunan adalah alat pembatas (boundary maker)**. 
-    Sebelum menghitung rumus atau mengukur statistik, ekonom harus menentukan siapa/apa saja yang masuk ke dalam 'pagar' analisisnya—baik itu batasan anggaran konsumen, kriteria penerima bantuan, hingga batas daya dukung lingkungan.
+    💡 **Landasan Konsep:** Himpunan (*Set*) adalah kumpulan objek-objek terdefinisi dengan jelas. 
+    Dalam ekonomi, himpunan digunakan untuk mengelompokkan agen ekonomi, batas-batas pilihan, hingga himpunan strategi.
     """)
     
-    # 3 Tab Utama
-    tab_mikro, tab_makro, tab_lingkungan = st.tabs([
-        "🛒 1. Mikro: Budget & Choice Set", 
-        "🌐 2. Makro: Ketenagakerjaan & Kebijakan",
-        "🍃 3. Lingkungan: Batas Ekologis"
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "1. Definisi & Notasi", 
+        "2. Hubungan Antar Himpunan", 
+        "3. Operasi Himpunan", 
+        "4. Aturan / Hukum Himpunan"
     ])
     
     # ==========================================
-    # TAB 1: MIKROEKONOMI
+    # TAB 1: DEFINISI & NOTASI
     # ==========================================
-    with tab_mikro:
-        st.subheader("1. Himpunan Kesanggupan Belanja (*Budget Set*)")
+    with tab1:
+        st.subheader("1. Penulisan Himpunan & Jenis Sifatnya")
         st.markdown("""
-        Keputusan konsumsi tidak pernah bebas tanpa batas. Konsumen dibatasi oleh **Budget Set ($B$)**, 
-        yaitu himpunan semua kombinasi barang $(X, Y)$ yang sanggup dibeli dengan pendapatan $I$.
+        Alpha Chiang menjelaskan dua cara utama menuliskan himpunan:
+        1. **Cara Enumerasi / Roster Method:** Menyebutkan seluruh anggotanya satu per satu.
+           * *Contoh:* $S = \{ \text{Rupiah, Dollar, Yen, Euro} \}$
+        2. **Cara Deskripsi / Set-Builder Method:** Menyebutkan syarat keanggotaannya.
+           * *Contoh:* $S = \{ x \mid x \text{ adalah mata uang utama dunia} \}$
         """)
         
-        st.latex(r"B = \{ (X, Y) \mid P_x X + P_y Y \le I, \quad X \ge 0, Y \ge 0 \}")
+        st.markdown("---")
+        st.subheader("Finite Set vs. Infinite Set")
         
-        col_in, col_graph = st.columns([1, 2])
-        
-        with col_in:
-            st.markdown("**Parameter Konsumen:**")
-            I = st.slider("Pendapatan / Budget (I)", 100, 1000, 500, step=50, key="b_I")
-            Px = st.slider("Harga Barang X (Px)", 10, 100, 50, step=5, key="b_Px")
-            Py = st.slider("Harga Barang Y (Py)", 10, 100, 25, step=5, key="b_Py")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.success("🔢 **Himpunan Terhingga (*Finite Set*)**")
+            st.write("Jumlah anggotanya terbatas dan dapat dihitung pasti.")
+            st.latex(r"A = \{ x \mid x \text{ adalah BUMN di Indonesia} \}")
+            st.caption("Jumlah perusahaan BUMN terbatas.")
             
-            max_x = I / Px
-            max_y = I / Py
-            
-            st.markdown("---")
-            st.write(f"* Konsumsi Maksimum X: **{max_x:.1f}** unit")
-            st.write(f"* Konsumsi Maksimum Y: **{max_y:.1f}** unit")
-            
-        with col_graph:
-            fig, ax = plt.subplots(figsize=(6, 4))
-            
-            x_vals = np.linspace(0, max_x, 100)
-            y_vals = (I - Px * x_vals) / Py
-            
-            ax.plot(x_vals, y_vals, color='#d62728', linewidth=2, label='Garis Anggaran (Px.X + Py.Y = I)')
-            ax.fill_between(x_vals, 0, y_vals, color='#2ca02c', alpha=0.3, label='Himpunan Terjangkau / Budget Set (B)')
-            
-            ax.set_xlim(0, max(max_x * 1.2, 5))
-            ax.set_ylim(0, max(max_y * 1.2, 5))
-            ax.set_xlabel("Barang X")
-            ax.set_ylabel("Barang Y")
-            ax.set_title("Daerah Feasible Konsumen")
-            ax.grid(True, linestyle='--', alpha=0.5)
-            ax.legend(fontsize=8)
-            
-            st.pyplot(fig)
+        with col2:
+            st.warning("♾️ **Himpunan Tak Hingga (*Infinite Set*)**")
+            st.write("Jumlah anggotanya tidak terbatas/kontinu.")
+            st.latex(r"P = \{ p \mid p > 0 \}")
+            st.caption("Himpunan harga $p$ yang mungkin bernilai kontinu dari 0 hingga tak terhingga.")
 
     # ==========================================
-    # TAB 2: MAKROEKONOMI & KEBIJAKAN
+    # TAB 2: HUBUNGAN ANTAR HIMPUNAN
     # ==========================================
-    with tab_makro:
-        st.subheader("2. Partisi Himpunan Ketenagakerjaan & Kebijakan Publik")
+    with tab2:
+        st.subheader("2. Hubungan Antar Himpunan (*Set Relations*)")
         st.markdown("""
-        Dalam makroekonomi, indikator nasional dihitung dengan melakukan **partisi himpunan**—membagi himpunan semesta populasi menjadi subset-subset yang saling lepas (*disjoint*).
+        * **Subset ($A \subseteq B$):** Setiap elemen $A$ juga merupakan elemen $B$.
+        * **Proper Subset ($A \subset B$):** $A$ adalah subset $B$, dan $A \neq B$.
+        * **Equal Sets ($A = B$):** $A \subseteq B$ dan $B \subseteq A$.
+        * **Disjoint Sets ($A \cap B = \emptyset$):** Dua himpunan yang tidak memiliki satu pun anggota yang sama.
         """)
         
-        col_m1, col_m2 = st.columns([1, 2])
+        # Interaktif Sederhana
+        st.markdown("---")
+        st.markdown("### 🧪 Uji Hubungan Ekonomi:")
+        opsi_relasi = st.selectbox(
+            "Pilih Contoh Hubungan Himpunan Ekonomi:",
+            [
+                "Himpunan Mobil Listrik vs Himpunan Otomotif (Subset)",
+                "Himpunan Barang Normal vs Himpunan Barang Inferior (Disjoint)"
+            ]
+        )
         
-        with col_m1:
-            pop_kerja = st.number_input("Penduduk Usia Kerja (W) [Juta Jiwa]", value=200, key="pop_w")
-            tpak = st.slider("TPAK (%) - Proporsi L terhadap W", 50, 90, 70, key="tpak")
-            tpt = st.slider("TPT (%) - Proporsi U terhadap L", 1.0, 15.0, 5.0, step=0.5, key="tpt")
-            
-            L = pop_kerja * (tpak / 100)
-            U = L * (tpt / 100)
-            E = L - U
-            N = pop_kerja - L 
-            
-        with col_m2:
-            st.markdown("### 📊 Operasi & Struktur Himpunan:")
-            st.write(f"* **Semesta Usia Kerja ($W$):** {pop_kerja:.2f} Juta Jiwa")
-            st.write(f"* **Angkatan Kerja ($L \\subset W$):** {L:.2f} Juta Jiwa")
-            st.write(f"* **Bekerja ($E \\subset L$):** {E:.2f} Juta Jiwa")
-            st.write(f"* **Pengangguran ($U = L \\setminus E$):** {U:.2f} Juta Jiwa")
-            st.write(f"* **Bukan Angkatan Kerja ($N = W \\setminus L$):** {N:.2f} Juta Jiwa")
-            
-            fig2, ax2 = plt.subplots(figsize=(6, 3))
-            categories = ['Bukan Angkatan Kerja (N)', 'Bekerja (E)', 'Pengangguran (U)']
-            values = [N, E, U]
-            
-            ax2.barh(categories, values, color=['#7f7f7f', '#2ca02c', '#d62728'])
-            ax2.set_xlabel("Juta Jiwa")
-            ax2.set_title("Partisi Himpunan Ketenagakerjaan")
-            ax2.grid(axis='x', linestyle='--', alpha=0.5)
-            
-            st.pyplot(fig2)
-
-    # ==========================================
-    # TAB 3: EKONOMI LINGKUNGAN
-    # ==========================================
-    with tab_lingkungan:
-        st.subheader("3. Batas Ekologis & Himpunan Aktivitas Ekonomi")
-        st.markdown("""
-        Prinsip **"Bersahabat dengan Alam"** dapat diartikan secara sistematis melalui teori himpunan: 
-        Aktivitas ekonomi manusia ($E$) harus berada di dalam batas Himpunan Daya Dukung Ekosistem ($S$).
-        """)
-        
-        st.latex(r"\text{Sustainabilitas} \iff E \subseteq S")
-        
-        skala_ekonomi = st.slider("Skala Aktivitas Ekonomi (E)", 10, 150, 80)
-        kapasitas_alam = st.slider("Batas Kapasitas Alam / Carrying Capacity (S)", 50, 100, 100)
-        
-        if skala_ekonomi <= kapasitas_alam:
-            st.success(f"🌱 **Sistem Berkelanjutan:** $E \\subseteq S$. Seluruh aktivitas ekonomi ({skala_ekonomi}) berada dalam daya dukung alam ({kapasitas_alam}).")
+        if "Subset" in opsi_relasi:
+            st.info("💡 **Penjelasan:** Semua produsen mobil listrik ($A$) adalah produsen otomotif ($B$), maka $A \subset B$.")
         else:
-            eksploitasi = skala_ekonomi - kapasitas_alam
-            st.error(f"🚨 **Overshoot / Himpunan Pelanggaran:** $E \\setminus S \\neq \\emptyset$. Terjadi defisit ekologis sebesar {eksploitasi} unit!")
+            st.info("💡 **Penjelasan:** Suatu barang tidak bisa menjadi barang normal sekaligus inferior pada tingkat pendapatan yang sama, maka $A \cap B = \emptyset$.")
 
-    st.markdown("---")
-    
-    # REFLEKSI
-    st.subheader("🧠 Diskusikan & Refleksikan")
-    st.text_area(
-        "Bagaimana pendefinisian batas/kriteria keanggotaan suatu himpunan (seperti batas kriteria kemiskinan atau status angkatan kerja) dapat memengaruhi bentuk kebijakan yang dikeluarkan pemerintah?",
-        placeholder="Tuliskan gagasan atau catatan Anda di sini..."
-    )
+    # ==========================================
+    # TAB 3: OPERASI PADA HIMPUNAN
+    # ==========================================
+    with tab3:
+        st.subheader("3. Operasi pada Himpunan (*Set Operations*)")
+        st.markdown("Misalkan kita memiliki dua kelompok konsumen pasar:")
+        
+        # Interactive Set Operations
+        set_A = {"Produsen A", "Produsen B", "Produsen C"}
+        set_B = {"Produsen C", "Produsen D", "Produsen E"}
+        
+        st.write(f"* **Himpunan Pasar X (A):** `{set_A}`")
+        st.write(f"* **Himpunan Pasar Y (B):** `{set_B}`")
+        
+        op = st.radio("Pilih Operasi Himpunan:", ["Gabungan (Union: A ∪ B)", "Irisan (Intersection: A ∩ B)", "Selisih (Difference: A - B)"])
+        
+        if "Union" in op:
+            res = set_A.union(set_B)
+            st.success(f"**Hasil Gabungan ($A \\cup B$):** `{res}`")
+            st.caption("Semua produsen yang beroperasi di Pasar X ATAU Pasar Y.")
+        elif "Intersection" in op:
+            res = set_A.intersection(set_B)
+            st.success(f"**Hasil Irisan ($A \\cap B$):** `{res}`")
+            st.caption("Produsen yang beroperasi di Pasar X SEKALIGUS Pasar Y.")
+        else:
+            res = set_A.difference(set_B)
+            st.success(f"**Hasil Selisih ($A \\setminus B$):** `{res}`")
+            st.caption("Produsen yang HANYA beroperasi di Pasar X tetapi tidak di Pasar Y.")
+
+    # ==========================================
+    # TAB 4: ATURAN / HUKUM HIMPUNAN
+    # ==========================================
+    with tab4:
+        st.subheader("4. Hukum Operasi Himpunan (*Laws of Set Operations*)")
+        st.markdown("""
+        Seperti halnya aljabar biasa, aljabar himpunan mengikuti hukum-hukum berikut:
+
+        | Nama Hukum | Operasi Gabungan ($\cup$) | Operasi Irisan ($\cap$) |
+        | :--- | :--- | :--- |
+        | **Komutatif** | $A \cup B = B \cup A$ | $A \cap B = B \cap A$ |
+        | **Asosiatif** | $(A \cup B) \cup C = A \cup (B \cup C)$ | $(A \cap B) \cap C = A \cap (A \cap C)$ |
+        | **Distributif** | $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ | $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ |
+        | **De Morgan** | $(A \cup B)^c = A^c \cap B^c$ | $(A \cap B)^c = A^c \cup B^c$ |
+        """)
+        
+        st.markdown("---")
+        st.subheader("🧠 Refleksi Sederhana")
+        st.text_area("Menurut Anda, mengapa Hukum De Morgan penting saat kita ingin mengevaluasi kelompok masyarakat yang 'TIDAK menerima bantuan A maupun bantuan B'?", height=100)
