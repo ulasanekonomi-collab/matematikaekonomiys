@@ -26,7 +26,7 @@ def render():
         1. **Cara Enumerasi / Roster Method:** Menyebutkan seluruh anggotanya satu per satu.
            * *Contoh:* $S = \{ {Rupiah, Dollar, Yen, Euro} }$
         2. **Cara Deskripsi / Set-Builder Method:** Menyebutkan syarat keanggotaannya.
-           * *Contoh:* $S = \{ x \mid x \text{ adalah mata uang utama dunia} \}$
+           * *Contoh:* $S = \{ x \mid x { adalah mata uang utama dunia}}$
         """)
         
         st.markdown("---")
