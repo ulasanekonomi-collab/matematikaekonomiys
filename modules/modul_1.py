@@ -18,7 +18,7 @@ def render():
         with col_res:
             st.markdown("### 🔬 1. Dalam Penelitian (*Research*)")
             st.markdown("""
-            * **Mendefinisikan Ruang Analisis (*Domain*):** Menentukan batas nilai variabel yang valid (misal: pendapatan $Y \ge 0$, konsumsi $C \ge 0$).
+            * **Mendefinisikan Ruang Analisis (*Domain*):** Menentukan batas nilai variabel yang valid (misal: investasi $I \ge 0$, konsumsi $C \ge 0$).
             * **Partisi Data Sosial-Ekonomi:** Membagi data populasi besar menjadi *subset-subset* saling lepas untuk menghitung tingkat kemiskinan, kemiskinan ekstrem, atau ketimpangan.
             * **Aksioma Teori Ekonomi:** Landasan teori preferensi konsumen dan teori permainan (*Game Theory*) sepenuhnya dibangun dari aksioma himpunan.
             """)
