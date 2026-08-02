@@ -102,32 +102,66 @@ def render():
     # ==========================================
     with tab3:
         st.subheader("3. Operasi pada Himpunan (Set Operations)")
-        st.markdown("Misalkan kita memiliki dua kelompok konsumen pasar:")
+        st.markdown("""
+        Untuk membangun **familiarisasi**, mari kita bedah operasi himpunan menggunakan contoh kasus nyata di tingkat regional:
+        * **Semesta Pembicaraan (S):** Seluruh UMKM terdaftar = `{A, B, C, D, E, F}`
+        * **Himpunan A (Penerima Subsidi Modal):** `{A, B, C, D}`
+        * **Himpunan B (Adopsi Digital / E-Commerce):** `{C, D, E}`
+        """)
         
-        set_A = {"Produsen A", "Produsen B", "Produsen C"}
-        set_B = {"Produsen C", "Produsen D", "Produsen E"}
+        st.markdown("---")
+        st.markdown("### ✍️ Contoh Kerja & Proses Analisis:")
         
-        st.write(f"* **Himpunan Pasar X (A):** `{set_A}`")
-        st.write(f"* **Himpunan Pasar Y (B):** `{set_B}`")
+        # Penjelasan langkah kerja
+        st.markdown("""
+        1. **Gabungan (Union: A ∪ B)**
+           * *Makna Ekonomi:* Seluruh UMKM yang tersentuh program (baik subsidi modal *atau* digitalisasi).
+           * *Proses:* Menggabungkan seluruh anggota tanpa duplikasi $\to$ `{A, B, C, D, E}`.
+           
+        2. **Irisan (Intersection: A ∩ B)**
+           * *Makna Ekonomi:* UMKM unggulan yang **sekaligus** menerima subsidi **dan** sudah go-digital.
+           * *Proses:* Mencari anggota yang muncul di kedua himpunan $\to$ `{C, D}`.
+           
+        3. **Selisih (Difference: A \\ B)**
+           * *Makna Ekonomi:* UMKM yang hanya menerima subsidi modal, **tetapi belum** mengadopsi digital.
+           * *Proses:* Anggota Himpunan A yang dibuang elemennya jika ada di B $\to$ `{A, B}`.
+           
+        4. **Komplemen (Complement: Aᶜ)**
+           * *Makna Ekonomi:* UMKM di kota tersebut yang **tidak** tersentuh sama sekali oleh program subsidi modal.
+           * *Proses:* Anggota Semesta $S$ yang tidak ada di A $\to$ `{E, F}`.
+        """)
         
-        op = st.radio("Pilih Operasi Himpunan:", [
-            "Gabungan (Union: A ∪ B)", 
-            "Irisan (Intersection: A ∩ B)", 
-            "Selisih (Difference: A \\ B)"
+        st.markdown("---")
+        st.markdown("### 🧪 Simulator Interaktif Operasi")
+        
+        # Variabel interaktif praktis
+        set_S = {"UMKM-A", "UMKM-B", "UMKM-C", "UMKM-D", "UMKM-E", "UMKM-F"}
+        set_A = {"UMKM-A", "UMKM-B", "UMKM-C", "UMKM-D"}
+        set_B = {"UMKM-C", "UMKM-D", "UMKM-E"}
+        
+        st.write(f"* **Himpunan Semesta (S):** `{set_S}`")
+        st.write(f"* **Himpunan A (Subsidi):** `{set_A}`")
+        st.write(f"* **Himpunan B (Digital):** `{set_B}`")
+        
+        op = st.radio("Pilih Operasi untuk Dilihat Hasilnya:", [
+            "Gabungan (A ∪ B)", 
+            "Irisan (A ∩ B)", 
+            "Selisih (A \\ B)",
+            "Komplemen A (Aᶜ)"
         ])
         
-        if "Union" in op:
+        if "Gabungan" in op:
             res = set_A.union(set_B)
             st.success(f"**Hasil Gabungan (A ∪ B):** `{res}`")
-            st.caption("Semua produsen yang beroperasi di Pasar X ATAU Pasar Y.")
-        elif "Intersection" in op:
+        elif "Irisan" in op:
             res = set_A.intersection(set_B)
             st.success(f"**Hasil Irisan (A ∩ B):** `{res}`")
-            st.caption("Produsen yang beroperasi di Pasar X SEKALIGUS Pasar Y.")
-        else:
+        elif "Selisih" in op:
             res = set_A.difference(set_B)
             st.success(f"**Hasil Selisih (A \\ B):** `{res}`")
-            st.caption("Produsen yang HANYA beroperasi di Pasar X tetapi tidak di Pasar Y.")
+        else:
+            res = set_S.difference(set_A)
+            st.success(f"**Hasil Komplemen A (Aᶜ):** `{res}`")
 
     # ==========================================
     # TAB 4: ATURAN / HUKUM HIMPUNAN
