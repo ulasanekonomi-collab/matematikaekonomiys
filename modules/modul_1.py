@@ -167,10 +167,10 @@ def render():
     # TAB 4: ATURAN / HUKUM HIMPUNAN
     # ==========================================
     with tab4:
-        st.subheader("4. Hukum Operasi Himpunan (Laws of Set Operations)")
+        st.subheader("4. Aturan & Hukum Operasi Himpunan (Laws of Set Operations)")
         st.markdown("""
-        Seperti halnya aljabar biasa, aljabar himpunan mengikuti hukum-hukum berikut:
-
+        Hukum-hukum ini memastikan logika berpikir ekonom tetap konsisten saat mengolah data atau memetakan ruang pilihan kebijakan.
+        
         | Nama Hukum | Operasi Gabungan (∪) | Operasi Irisan (∩) |
         | :--- | :--- | :--- |
         | **Komutatif** | A ∪ B = B ∪ A | A ∩ B = B ∩ A |
@@ -180,5 +180,82 @@ def render():
         """)
         
         st.markdown("---")
+        st.subheader("✍️ Contoh Kerja Familiarisasi Hukum De Morgan")
+        st.markdown("""
+        Mari kita buktikan **Hukum De Morgan Pertama: $(A \\cup B)^c = A^c \\cap B^c$** menggunakan data simulasi pasar kerja:
+        * **Semesta ($S$):** Seluruh Angkatan Kerja = `{Karyawan A, Karyawan B, Karyawan C, Karyawan D, Karyawan E}`
+        * **Himpunan A (Punya Sertifikasi Digital):** `{Karyawan A, Karyawan B}`
+        * **Himpunan B (Punya Gelar Sarjana):** `{Karyawan B, Karyawan C}`
+        """)
+        
+        col_ruas_kiri, col_ruas_kanan = st.columns(2)
+        
+        with col_ruas_kiri:
+            st.info("👈 **Sisi Kiri: $(A \\cup B)^c$**")
+            st.markdown("""
+            1. Cari Gabungan $(A \\cup B)$: `{A, B, C}`
+            2. Cari Komplemennya $((A \\cup B)^c)$: Ambil anggota $S$ yang tidak ada di gabungan.
+            * **Hasil Sisi Kiri:** `{Karyawan D, Karyawan E}`
+            * *Makna:* Pekerja yang **TIDAK** memiliki sertifikasi digital *maupun* gelar sarjana.
+            """)
+            
+        with col_ruas_kanan:
+            st.success("👉 **Sisi Kanan: $A^c \\cap B^c$**")
+            st.markdown("""
+            1. Cari $A^c$ (Tidak sertifikasi): `{C, D, E}`
+            2. Cari $B^c$ (Tidak sarjana): `{A, D, E}`
+            3. Cari Irisannya ($A^c \\cap B^c$): Cari anggota yang sama.
+            * **Hasil Sisi Kanan:** `{Karyawan D, Karyawan E}`
+            * *Makna:* Pekerja yang tidak sertifikasi **SEKALIGUS** tidak sarjana.
+            """)
+            
+        st.warning("✅ **Kesimpulan:** Ruas Kiri = Ruas Kanan (`{Karyawan D, Karyawan E}`). Hukum De Morgan terbukti sahih secara eksplisit!")
+
+        st.markdown("---")
+        st.subheader("🧪 Pembukti Logika Interaktif")
+        
+        pilihan_hukum = st.selectbox(
+            "Pilih Hukum Himpunan yang Ingin Diuji Logikanya:",
+            [
+                "Hukum Komutatif (A ∪ B = B ∪ A)",
+                "Hukum Distributif: A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+                "Hukum De Morgan: (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ"
+            ]
+        )
+        
+        # Set Data Simulasi Interaktif
+        S = {"1", "2", "3", "4", "5", "6"}
+        A = {"1", "2", "3"}
+        B = {"3", "4"}
+        C = {"4", "5"}
+        
+        if "Komutatif" in pilihan_hukum:
+            kiri = A.union(B)
+            kanan = B.union(A)
+            st.write(f"* **Ruas Kiri (A ∪ B):** `{kiri}`")
+            st.write(f"* **Ruas Kanan (B ∪ A):** `{kanan}`")
+            st.success("🎉 Hasil kedua ruas SAMA KANONIK. Komutatif berlaku!")
+            
+        elif "Distributif" in pilihan_hukum:
+            kiri = A.intersection(B.union(C))
+            kanan = A.intersection(B).union(A.intersection(C))
+            st.write(f"* **Ruas Kiri `A ∩ (B ∪ C)`:** `{kiri}`")
+            st.write(f"* **Ruas Kanan `(A ∩ B) ∪ (A ∩ C)`:** `{kanan}`")
+            st.success("🎉 Hasil kedua ruas SAMA KANONIK. Distributif berlaku!")
+            
+        else:
+            kiri = S.difference(A.union(B))
+            Ac = S.difference(A)
+            Bc = S.difference(B)
+            kanan = Ac.intersection(Bc)
+            st.write(f"* **Ruas Kiri `(A ∪ B)ᶜ`:** `{kiri}`")
+            st.write(f"* **Ruas Kanan `Aᶜ ∩ Bᶜ`:** `{kanan}`")
+            st.success("🎉 Hasil kedua ruas SAMA KANONIK. De Morgan berlaku!")
+
+        st.markdown("---")
         st.subheader("🧠 Refleksi Sederhana")
-        st.text_area("Menurut Anda, mengapa Hukum De Morgan penting saat kita ingin mengevaluasi kelompok masyarakat yang 'TIDAK menerima bantuan A maupun bantuan B'?", height=100)
+        st.text_area(
+            "Mengapa saat membuat program Bantuan Sosial (Bansos), pemerintah lebih efisien menggunakan formula De Morgan (mendaftar syarat yang TIDAK berhak) dibanding mendaftar satu per satu orang yang berhak?",
+            height=100,
+            placeholder="Tuliskan gagasan Anda di sini..."
+        )
